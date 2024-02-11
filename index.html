@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наведение курсора на div</title>
+    <title>Ты будешь моей Валентинкой?</title>
     <script>
         function getRandomNumber(min, max) {
             return Math.floor(min + Math.random() * (max - min));
@@ -13,15 +13,21 @@
             let divElement = document.getElementById("hover-div");
 
             console.log(window.innerHeight + "       " + window.innerWidth)
-            console.log((divElement.style.top + divElement.offsetHeight))
-            console.log((divElement.style.left + divElement.offsetWidth))
+            console.log((divElement.style.top + divElement.offsetHeight) + "      " + (divElement.style.left + divElement.offsetWidth))
 
-            divElement.style.position = "absolute";
-            divElement.style.top = getRandomNumber(10, window.innerHeight - divElement.offsetHeight - 10) + "px";
-            divElement.style.left = getRandomNumber(10, window.innerHeight  - divElement.offsetHeight - 10) + "px";
+            divElement.style.position = "relative";
+            divElement.style.top = getRandomNumber(10, window.innerHeight - divElement.offsetHeight - 20) + "px";
+            divElement.style.left = getRandomNumber(10, window.innerWidth  - divElement.offsetWidth - 20) + "px";
         }
     </script>
     <style>
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
         .hover-div {
             height: min-content;
             width: min-content;
@@ -37,6 +43,7 @@
     </style>
 </head>
 <body>
+
 <div class="hover-div" id="hover-div" onmouseenter="handleMouseEnter()" onclick="handleMouseEnter()">
     <button>Нет</button>
 </div>

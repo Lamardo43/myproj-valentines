@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наведение курсора на div</title>
+    <script>
+        function getRandomNumber(min, max) {
+            return Math.floor(min + Math.random() * (max - min));
+        }
+        function handleMouseEnter() {
+
+            let divElement = document.getElementById("hover-div");
+
+            console.log(window.innerHeight + "       " + window.innerWidth)
+            console.log((divElement.style.top + divElement.offsetHeight))
+            console.log((divElement.style.left + divElement.offsetWidth))
+
+            divElement.style.position = "absolute";
+            divElement.style.top = getRandomNumber(10, window.innerHeight - divElement.offsetHeight - 10) + "px";
+            divElement.style.left = getRandomNumber(10, window.innerHeight  - divElement.offsetHeight - 10) + "px";
+        }
+    </script>
+    <style>
+        .hover-div {
+            height: min-content;
+            width: min-content;
+            padding: 10px;
+            background-color: blue;
+        }
+
+        button {
+
+            font-size: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="hover-div" id="hover-div" onmouseenter="handleMouseEnter()" onclick="handleMouseEnter()">
+    <button>Нет</button>
+</div>
+</body>
+</html>

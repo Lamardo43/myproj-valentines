@@ -1,51 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" lang="ru">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ты будешь моей Валентинкой?</title>
     <script>
         function getRandomNumber(min, max) {
-            return Math.floor(min + Math.random() * (max - min));
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
         }
+
         function handleMouseEnter() {
+            let button = document.getElementById('hover-div-no');
+            button.style.position = "absolute";
 
-            let divElement = document.getElementById("hover-div");
+            let randomX = Math.floor(Math.random() * (window.innerWidth - button.offsetWidth));
+            let randomY = Math.floor(Math.random() * (window.innerHeight - button.offsetHeight));
 
-            console.log(window.innerHeight + "       " + window.innerWidth)
-            console.log((divElement.style.top + divElement.offsetHeight) + "      " + (divElement.style.left + divElement.offsetWidth))
-
-            divElement.style.position = "relative";
-            divElement.style.top = getRandomNumber(10, window.innerHeight - divElement.offsetHeight - 20) + "px";
-            divElement.style.left = getRandomNumber(10, window.innerWidth  - divElement.offsetWidth - 20) + "px";
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
         }
+
+        function she_say_yes() {
+            document.getElementById("me").innerHTML = '<img src="imgs/IMG_20240213_201634.jpg" height="350px">';
+            document.getElementById("buttons").style.display = "none";
+            document.getElementById("text").innerText = "УРА!"
+        }
+
     </script>
     <style>
 
         body {
+            color: white;
+            font-size: 26px;
             height: 100vh;
             width: 100vw;
             margin: 0;
+            background-color: #c881cb;
+            display: flex;
+            align-content: center;
+            justify-content: center;
         }
 
         .hover-div {
             height: min-content;
             width: min-content;
             padding: 10px;
-            background-color: blue;
         }
 
         button {
-
             font-size: 20px;
-            padding: 5px;
+            padding: 10px;
+            background-color: #8c3bc7;
+            color: white;
+            border: #4a0a83 solid 2px;
+            border-radius: 20px;
         }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .central-image {
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            border-radius: 20px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+
     </style>
 </head>
 <body>
 
-<div class="hover-div" id="hover-div" onmouseenter="handleMouseEnter()" onclick="handleMouseEnter()">
-    <button>Нет</button>
+<div class="central-image">
+    <p id="text">Ты будешь моей <br> Валентинкой?</p>
+    <div id="me">
+        <img src="imgs/IMG_20240213_201611.jpg" height="350px">
+    </div>
+
+    <div class="buttons" id="buttons">
+        <div class="hover-div" id="hover-div-yes" onclick="she_say_yes()">
+            <button>Да</button>
+        </div>
+
+        <div class="hover-div" onclick="handleMouseEnter()" onmouseenter="handleMouseEnter()">
+            <button id="hover-div-no">Нет</button>
+        </div>
+    </div>
 </div>
+
+
 </body>
 </html>
